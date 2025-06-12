@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title> Colliding Blocks Counting PI - 3Blue1Brown</title>
+	<title> פאי בהפתעה - Pi from the sky</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
 	<link href='https://fonts.googleapis.com/css?family=Handlee' rel='stylesheet'>
@@ -26,7 +26,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-	
+
 	<style>
 		#positionphasespacegraphholder,
 		#positionphasespacegraphTextholder,
@@ -45,6 +45,48 @@
 		#transformedvelocityphasespacegraphTextholder {
 			visibility: hidden;
 		}
+
+		#controls {
+			margin-bottom: 20px;
+		}
+
+		button {
+			background-color: white;
+			border: 2px solid black;
+			border-radius: 24px;
+			padding: 8px 20px;
+			font-weight: bold;
+			transition: all 0.2s ease;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: black;
+			color: white;
+		}
+
+		#inputs-container {
+			display: flex;
+			justify-content: center;
+			gap: 16px;
+			margin: 15px auto;
+			flex-wrap: wrap;
+		}
+
+		#inputs-container label {
+			font-weight: bold;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		#maincanvasholder {
+			border: 2px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			padding: 10px;
+			background: #fafafa;
+		}
 	</style>
 </head>
 
@@ -58,7 +100,7 @@
 					<td colspan="4" id='titletext'
 						style="text-align: center; vertical-align: middle; border-right: 0px solid black; font-size: 3vmin;">
 						<a id="titletextlink" href="https://www.youtube.com/watch?v=HEfHFsfGXjs" target="_blank"
-							style="text-decoration: none; color: hsla(210,100%,50%,1); ">Counting π</a>
+							style="text-decoration: none; color: hsla(210,100%,50%,1); ">Pi from the sky</a>
 					</td>
 					<td colspan="1" id='websitetext'
 						style="text-align: center; vertical-align: middle; border-right: 0px solid black; font-size: 2vmin;">
@@ -96,6 +138,7 @@
 							href="https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf"
 							target="_blank" style="text-decoration: none; color: hsla(210,100%,50%,1); "> "Playing Pool
 							with π" </a>
+							<br/>
 					</td>
 					<td colspan="1" id='spacer'
 						style="text-align: center; vertical-align: middle; border-right: 0px solid black; font-size: 1.8vmin; ">
@@ -1274,9 +1317,9 @@
 				// console.log(m2)
 				clearInterval(loopinterval)
 				loopinterval = null
-				allInitialContent()
-				if (!paused) Loop()
 				paused = false
+				allInitialContent()
+				Loop()
 
 			}
 
@@ -1292,9 +1335,9 @@
 				// console.log(m2)
 				clearInterval(loopinterval)
 				loopinterval = null
-				allInitialContent()
-				if (!paused) Loop()
 				paused = false
+				allInitialContent()
+				Loop()
 			}
 
 		}
@@ -1309,9 +1352,9 @@
 				// console.log(m2)
 				clearInterval(loopinterval)
 				loopinterval = null
-				allInitialContent()
-				if (!paused) Loop()
 				paused = false
+				allInitialContent()
+				Loop()
 			}
 
 		}
@@ -2463,7 +2506,7 @@
 			options.x = (Math.sqrt(C / m2) - 0.7) * Math.sqrt(m2) + 2
 			options.y = 0.1 * ((Math.sqrt(C / m1)) * Math.sqrt(m1) + 2)
 			options.fontSize = 4
-			options.text = 'V2 = sqrt(m2)*v2'
+			options.text = 'x = √(m2)*v2'
 			options.textcolor = 'hsla(260, 100%, 50%, 1)'
 			if (darkmode) {
 				options.textcolor = 'hsla(260, 100%, 70%, 1)'
@@ -2475,7 +2518,7 @@
 			options.x = 0
 			options.y = (initalv1 * Math.sqrt(m2 / m1)) * Math.sqrt(m1) + 2
 			options.fontSize = 4
-			options.text = 'V1 = sqrt(m1)*v1'
+			options.text = 'y = √(m1)*v1'
 			options.textcolor = 'hsla(190, 100%, 50%, 1)'
 			if (darkmode) {
 				options.textcolor = 'hsla(190, 100%, 70%, 1)'
