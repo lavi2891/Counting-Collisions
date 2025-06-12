@@ -142,9 +142,10 @@
 				</tr>
 			</table>
 		</div>
-		<div style="text-align:center; margin: 10px;">
-			<button onclick="toggleEllipse()">Toggle Ellipse</button>
-			<button onclick="toggleCircle()">Toggle Circle</button>
+		<div id="additionalcontrollers" style="text-align:center; margin: 10px;">
+			<button onclick="toggleEllipse()">Show / Hide Ellipse</button>
+			<button onclick="toggleCircle()">Show / Hide Circle</button>
+			<button id="pauseBtn" onclick="toggleAnimation()">Play / Pause Animation</button>
 		</div>
 		<div id="velocityphasespacegraphholder"
 			style='margin:0px;width:48%; height: 45%;overflow: hidden;position: relative; display: inline-block; '>
@@ -275,7 +276,8 @@
 
 
 	<script>
-
+		let paused = false;
+		let loopinterval;
 		fixedInnerWValue = window.innerWidth
 		fixedInnerHValue = window.innerHeight
 
@@ -1270,7 +1272,12 @@
 			else {
 				m2 = parseInt(event.target.value)
 				// console.log(m2)
+				clearInterval(loopinterval)
+				loopinterval = null
 				allInitialContent()
+				if (!paused) Loop()
+				paused = false
+
 			}
 
 		}
@@ -1283,7 +1290,11 @@
 				v1value = parseFloat(document.getElementById('initialvelocity1input').value)
 				initvector = [v1value, v2value]
 				// console.log(m2)
+				clearInterval(loopinterval)
+				loopinterval = null
 				allInitialContent()
+				if (!paused) Loop()
+				paused = false
 			}
 
 		}
@@ -1296,7 +1307,11 @@
 				v1value = parseFloat(document.getElementById('initialvelocity1input').value)
 				initvector = [v1value, v2value]
 				// console.log(m2)
+				clearInterval(loopinterval)
+				loopinterval = null
 				allInitialContent()
+				if (!paused) Loop()
+				paused = false
 			}
 
 		}
@@ -2633,9 +2648,10 @@
 
 
 		function Loop() {
-			var loopinterval = setInterval(frame, 10);
+			loopinterval = setInterval(frame, 10);
 			function frame() {
 				// console.log(t)
+				if (paused) return;
 				if (t < uptotime) {
 					// console.log(timestep)
 
@@ -2993,7 +3009,17 @@
 			holder.style.visibility = text.style.visibility = visible ? 'hidden' : 'visible';
 		}
 
+		function toggleAnimation() {
+			paused = !paused
+		}
 
+		function restartSimulationFromInput() {
+			clearInterval(loopinterval); // stop running loop
+			paused = false;
+			document.getElementById('pauseBtn').textContent = 'Pause';
+
+			allInitialContent(); // reset everything from scratch
+		}
 
 
 	</script>
